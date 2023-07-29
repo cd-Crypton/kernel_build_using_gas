@@ -25,6 +25,7 @@ jobs:
 
     - name: Compile Kernel
       run: |
+        chmod a+x build
         ./build
 
     - name: Set Properties
