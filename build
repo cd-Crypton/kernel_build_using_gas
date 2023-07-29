@@ -10,18 +10,18 @@ KERNEL_DEFCONFIG=vendor/bengal-perf_defconfig
 # Prebuilt Clang Toolchain (AOSP)
 CLANG_URL=https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r416183b.tar.gz
 
-# Prebuilt GCC Utilities (AOSP)
-GCC_x64=https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
-GCC_x32=https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
-GCC_BRANCH=android12L-release
+# Prebuilt GAS Utilities (AOSP)
+GAS=https://android.googlesource.com/platform/prebuilts/gas/linux-x86
+GAS_BRANCH=android-12.1.0_r0.40
 
 # Setup make Command
 make_fun() {
   make O=out ARCH=arm64 \
-       CC=clang HOSTCC=clang \
-       CLANG_TRIPLE=aarch64-linux-gnu- \
-       CROSS_COMPILE=aarch64-linux-androidkernel- \
-       CROSS_COMPILE_COMPAT=arm-linux-androidkernel- "$@"
+       LLVM=1 LLVM_IAS=1 \
+       CROSS_COMPILE=aarch64-linux-gnu- \
+       CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
+       LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN=gas \
+       LINUX_GCC_CROSS_COMPILE_COMPAT_PREBUILTS_BIN=gas "$@"
 }
 
 # Work Path
@@ -39,12 +39,11 @@ cd "${WORK}" || exit 1
 
 # Cloning all the Necessary files
 if [ ! -d clang ]; then mkdir clang && curl -Lsq "${CLANG_URL}" -o clang.tgz && tar -xzf clang.tgz -C clang; fi
-[ ! -d x64 ] && git clone --depth=1 "${GCC_x64}" -b "${GCC_BRANCH}" ./x64
-[ ! -d x32 ] && git clone --depth=1 "${GCC_x32}" -b "${GCC_BRANCH}" ./x32
+[ ! -d gas ] && git clone --depth=1 "${GAS}" -b "${GAS_BRANCH}" ./gas
 [ ! -d "${KERNEL}" ] && git clone --depth=1 "${KERNEL_SOURCE}" -b "${KERNEL_BRANCH}" "${KERNEL}"
 
 # Setting Toolchain Path
-PATH="${WORK}/clang/bin:${WORK}/x64/bin:${WORK}/x32/bin:/bin"
+PATH="${WORK}/clang/bin:${WORK}/gas:/bin"
 
 # Enter Kernel root directory
 cd "${KERNEL_SRC}" || exit 1
