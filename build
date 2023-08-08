@@ -8,7 +8,7 @@ KERNEL_BRANCH=android13-bengal
 KERNEL_DEFCONFIG=vendor/bengal-perf_defconfig
 
 # Prebuilt Clang Toolchain (AOSP)
-CLANG_URL=https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz
+CLANG_URL=https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android11-release/clang-r377782c.tar.gz
 
 # Prebuilt GAS Utilities (AOSP)
 GAS=https://android.googlesource.com/platform/prebuilts/gas/linux-x86
