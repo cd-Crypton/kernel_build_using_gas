@@ -4,7 +4,7 @@ set -e -x
 
 # Kernel Source
 KERNEL_SOURCE=https://github.com/cd-Crypton/android_kernel_oneplus_sm6225
-KERNEL_BRANCH=ack-4.19-stable
+KERNEL_BRANCH=4.19.157-07700
 KERNEL_DEFCONFIG=vendor/bengal-perf_defconfig
 
 # Prebuilt Clang Toolchain (AOSP)
