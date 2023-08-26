@@ -16,7 +16,7 @@ GAS_BRANCH=master-kernel-build-2021
 
 # Setup make Command
 make_fun() {
-  make O=out ARCH=arm64 \
+  make O=out ARCH=arm64 LLVM=1 \
        CROSS_COMPILE=aarch64-linux-gnu- \
        CROSS_COMPILE_COMPAT=arm-linux-gnueabi- "$@"
 }
