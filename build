@@ -3,9 +3,9 @@
 set -e -x
 
 # Kernel Source
-KERNEL_SOURCE=https://github.com/cd-Crypton/android_kernel_realme_sm6225
-KERNEL_BRANCH=android13-staging
-KERNEL_DEFCONFIG=vendor/bengal-perf_defconfig
+KERNEL_SOURCE=https://github.com/cd-Crypton/kernel_realme_jennie
+KERNEL_BRANCH=master
+KERNEL_DEFCONFIG="gki_defconfig vendor/waipio_GKI.config"
 
 # Prebuilt Clang Toolchain (AOSP)
 CLANG_URL=https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r416183b.tar.gz
@@ -16,7 +16,7 @@ GAS_BRANCH=master-kernel-build-2021
 
 # Setup make Command
 make_fun() {
-  make O=out ARCH=arm64 LLVM=1 \
+  make O=out ARCH=arm64 LLVM=1 LLVM_IAS=1 \
        CROSS_COMPILE=aarch64-linux-gnu- \
        CROSS_COMPILE_COMPAT=arm-linux-gnueabi- "$@"
 }
