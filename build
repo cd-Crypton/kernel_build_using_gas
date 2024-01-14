@@ -3,9 +3,9 @@
 set -e -x
 
 # Kernel Source
-KERNEL_SOURCE=https://github.com/cd-Crypton/android_kernel_oplus_sm8350
-KERNEL_BRANCH=RMX3461
-KERNEL_DEFCONFIG=vendor/lahaina-gki_defconfig vendor/lahaina_GKI.config
+KERNEL_SOURCE=https://github.com/cd-Crypton/android_kernel_nokia_CAP_sprout
+KERNEL_BRANCH=A12.1/LA.UM.8.11.r1-02400-NICOBAR.0
+KERNEL_DEFCONFIG=vendor/trinket-perf_config
 
 # Prebuilt Clang Toolchain (AOSP)
 CLANG_URL=https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r416183b.tar.gz
@@ -16,7 +16,7 @@ GAS_BRANCH=master-kernel-build-2021
 
 # Setup make Command
 make_fun() {
-  make O=out ARCH=arm64 LLVM=1 \
+  make O=out ARCH=arm64 \
        CROSS_COMPILE=aarch64-linux-gnu- \
        CROSS_COMPILE_COMPAT=arm-linux-gnueabi- "$@"
 }
