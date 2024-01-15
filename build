@@ -4,7 +4,7 @@ set -e -x
 
 # Kernel Source
 KERNEL_SOURCE=https://github.com/cd-Crypton/android_kernel_nokia_CAP_sprout
-KERNEL_BRANCH=A12.1/LA.UM.8.11.r1-02400-NICOBAR.0
+KERNEL_BRANCH=staging
 KERNEL_DEFCONFIG=vendor/trinket-perf_defconfig
 
 # Prebuilt Clang Toolchain (AOSP)
